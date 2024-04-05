@@ -33,12 +33,10 @@ class Player:
             choice_index = int(choice) - 1
             if 0 <= choice_index < len(self.hand):
                 card = self.hand.pop(choice_index)
-                if card not in self.used_cards:
-                    self.used_cards.add(card)
-                    stack.push(card)  # Push the used card onto the stack
-                    return True
-                else:
-                    print("This card has already been used.")
+                self.used_cards.add(card)
+                stack.push(card)  # Push the used card onto the stack
+                print(f"{self.name} played {card}")
+                return True
             else:
                 print("Invalid choice. Please enter a number within the range.")
         except ValueError:

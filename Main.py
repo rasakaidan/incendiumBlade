@@ -37,7 +37,6 @@ if __name__ == "__main__":
 
         # Player takes a turn
         if current_player.use_card(card_stack):
-            print(f"{current_player.name} played.")
             turns += 1
         else:
             print(f"{current_player.name} couldn't play a card.")
