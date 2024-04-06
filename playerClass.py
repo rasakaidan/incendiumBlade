@@ -13,12 +13,12 @@ class Player:
                 self.hp = 0
 
     # could do heal as negative damage?
- 
     # need 3 counters - should be tied to player (reflux and metamorph AND cocoon)
 
     def toggle_immunity(self):
         self.immunity = not self.immunity
 
+    # shoud use this somewhere as win condition for the game 
     def is_alive(self):
         return self.hp > 0
 
@@ -45,6 +45,6 @@ class Player:
         return False
 
     def print_available_cards(self):
-        print(f"{self.name}'s Hand - Available Cards:")
+        print(f"{self.name}'s Hand:")
         for card in self.hand:
             print(card)

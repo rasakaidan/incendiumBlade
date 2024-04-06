@@ -1,14 +1,18 @@
 from stackStack import Stack
 from playerClass import Player
+from cardClass import Card
 
 if __name__ == "__main__":
     
     player1 = Player("Incendium")
     player2 = Player("Blade")
+
+    #blast = Card("Blast")
     card_stack = Stack()
 
     # hand class? tied to player? 
     player1.add_card_to_hand("Blast")
+    #player1.add_card_to_hand(blast) - this does weird stuff cuz you're adding an object - <cardClass.Card object at 0x000001EF03C3B410>
     player1.add_card_to_hand("Blast")
     player1.add_card_to_hand("Reflux")
     player1.add_card_to_hand("Storm")
@@ -35,20 +39,20 @@ if __name__ == "__main__":
     while turns < 6:  # stack fills to 6 before executing
         current_player = players[current_player_index]
 
-        # Player takes a turn
+        # AAAAAAHHHH
         if current_player.use_card(card_stack):
             turns += 1
         else:
             print(f"{current_player.name} couldn't play a card.")
 
-        # Switch to the next player
+        # players have to alternate cuz its so much easier to do it this way 
         current_player_index = (current_player_index + 1) % 2
 
-    # Execute cards in the stack from right to left
-    print("Cards executed from right to left:")
+    # Execute cards in stack
+    print("TURN OVER!")
     while not card_stack.is_empty():
         card = card_stack.pop()
-        print(card)
+        
 
 
 
