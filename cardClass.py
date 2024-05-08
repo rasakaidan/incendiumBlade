@@ -1,33 +1,74 @@
 class Card:
-    def __init__(self, name):
-        self.name = name
 
-    # does this need two inputs? target player and source player?
-    # where do i track this? 
-    def execute_action(self, player):
-        if self.name == "Blast":
-            player.take_damage(2)
-            print(f"{player.name} takes 2 damage from Blast.")
+  def __init__(self, name, owner=None):
+    self.name = name
+    self.owner = owner
 
-        # Pyro card 
-        elif self.name == "Pyro":
-            player.take_damage(4)
-            print(f"{player.name} takes 4 damage from Pyro!")
+  def set_owner(self, player):
+    self.owner = player
 
-        elif self.name == "Storm":
-            player.take_damage(1)
-            player.take_damage(1)
-            player.take_damage(1)
-            print(f"{player.name} is buffeted by a Storm!")
+  def get_owner(self):
+    return self.owner
 
-        # this needs a counter
-        #elif self.name == "Reflux":
-        #    player.something blah blah
-        
-        # also needs a counter
-        #elif self.name == "Coccon":
-        #    player.whatever
+  def play(self, player, targets):
+    pass
 
-        # counterino
-        #elif self.name == "Metamorphosis":
-        #    player.something 
+
+class Blast(Card):
+
+  def __init__(self):
+    super().__init__("Blast")
+
+  def play(self, player, opponents):
+    for opponent in opponents:
+      player.deal_damage(2, opponent)
+
+
+class Reflux(Card):
+
+  def __init__(self):
+    super().__init__("Reflux")
+
+  def play(self, player, targets):
+    for target in targets:
+      player.deal_damage(1, target)
+
+
+class Storm(Card):
+
+  def __init__(self):
+    super().__init__("Storm")
+
+  def play(self, player, targets):
+    for target in targets:
+      player.deal_damage(1, target)
+      player.deal_damage(1, target)
+      player.deal_damage(1, target)
+
+
+class Cock(Card):
+
+  def __init__(self):
+    super().__init__("Coccoon")
+
+  def play(self, player, targets):
+    player.toggle_immunity()
+
+
+class Meta(Card):
+
+  def __init__(self):
+    super().__init__("Metamorphose")
+
+  def play(self, player, targets):
+    player.toggle_meta()
+
+
+class Pyro(Card):
+
+  def __init__(self):
+    super().__init__("Pyro")
+
+  def play(self, player, targets):
+    for target in targets:
+      player.deal_damage(4, target)
